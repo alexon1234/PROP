@@ -157,14 +157,9 @@ public class branchBound {
      * @return true, si es una possible solucio i false, si no ho es
      */
     public boolean esMejor(double a) {
-        if(a <= mejorCost) {
-		System.out.println("Es mejor el node");
-		return true;
-	   }
-        else {
-           System.out.println("El node no es mejor");
-		return false; 
-	   }
+        if(a <= mejorCost) return true;
+	return false; 
+	   
     }
         
     /**
@@ -175,16 +170,6 @@ public class branchBound {
         while(!nodes.isEmpty()){
             Node b = nodes.poll();                          // Saca un node 
             Vector<Integer> pendientesPadre = b.getTeclasPendientes(); 
-            System.out.print("pendientes del padre: ");
-            for(int i=0; i < pendientesPadre.size();++i){
-                System.out.print(pendientesPadre.get(i)+ " ");
-            }
-            System.out.println("");
-            System.out.print("asignadas del padre: ");
-            for(int i=0; i < b.teclasAssignadas.length;++i){
-                System.out.print( b.teclasAssignadas[i]+" ");
-            }
-            System.out.println("");
             if(esMejor(b.cost)) {
                 if(pendientesPadre.isEmpty()) {
                     mejorSolucion = b;
@@ -198,30 +183,17 @@ public class branchBound {
                             pendientesHijo.remove(i);
                             int pos = mida-pendientesPadre.size();
 		            asignadosHijo[pos] = pendientesPadre.get(i);
-                            System.out.print("pendientes del padre: ");
-                            for(int k=0; k < pendientesHijo.size();++k){
-                                System.out.print(pendientesHijo.get(k)+ " ");
-                            }
-                            System.out.println("");
-                            System.out.print("asignadas del padre: ");
-                            for(int k=0; k < asignadosHijo.length;++k){
-                                System.out.print( asignadosHijo[k]+" ");
-                            }
-                            System.out.println("");
                             //double x = calcularCost(asignadosHijo,pos,b.cost); // Calcula el coste del nodo     
                             double x = g.calcularCoste(pendientesHijo,asignadosHijo,pos); //Llama al gilmore
                             Node c = new Node(pendientesHijo,asignadosHijo,x);                          
                             if(esMejor(c.cost)) {
                                 if(pendientesPadre.isEmpty()) {
-                                    System.out.println("Mejor coste que hay por ahora "+ b.cost);
+                                   
                                     mejorSolucion = b;
                                     mejorCost = b.cost;
                                 }          
-                                else {
-                                    System.out.println("Anado el node ");
-                                    System.out.println("Costa mejor "+ mejorCost+" Coste del node "+c.cost);
-                                    nodes.add(c);
-                                }
+                                else nodes.add(c);
+                                
                                     
                             }                               
                     }
