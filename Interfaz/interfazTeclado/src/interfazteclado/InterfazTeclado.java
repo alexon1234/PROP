@@ -8,7 +8,7 @@ package interfazteclado;
 
 /**
  *
- * @author josep
+ * @author josep + gabriel
  */
 public class InterfazTeclado {
 
@@ -17,8 +17,8 @@ public class InterfazTeclado {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Initialize ii = new Initialize();
-        ii.setVisible(true);
+        Initialize pantallaPpal = new Initialize();
+        pantallaPpal.setVisible(true);
     }
     
 }

@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/josep/PROP/Interfaz/interfazTeclado/src/interfazteclado/InterfazTeclado.java</file>
-            <file>file:/home/josep/PROP/Interfaz/interfazTeclado/src/interfazteclado/configurarCTextos.java</file>
-            <file>file:/home/josep/PROP/Interfaz/interfazTeclado/src/interfazteclado/configurarAlfabeto.java</file>
-            <file>file:/home/josep/PROP/Interfaz/interfazTeclado/src/interfazteclado/Initialize.java</file>
+            <file>file:/Users/gabrielcarrillolopez/Desktop/PROP/PROP2/lab/Interfaz/interfazTeclado/src/interfazteclado/configurarTeclado.java</file>
+            <file>file:/Users/gabrielcarrillolopez/Desktop/PROP/PROP2/lab/Interfaz/interfazTeclado/src/interfazteclado/InterfazTeclado.java</file>
+            <file>file:/Users/gabrielcarrillolopez/Desktop/PROP/PROP2/lab/Interfaz/interfazTeclado/src/interfazteclado/teclado.java</file>
         </group>
     </open-files>
 </project-private>

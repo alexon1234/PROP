@@ -21,7 +21,6 @@ public class configurarTeclado extends javax.swing.JFrame {
 	 */
 	
 	public configurarTeclado() {
-		teclado tec = new teclado();
 		limpiarCampos();
 		
 		initComponents();
@@ -32,6 +31,8 @@ public class configurarTeclado extends javax.swing.JFrame {
 		this.jtFilas.setText("");
 		this.jtPosiciones.setText("");
 		this.lbMens.setText("");
+		this.cbFormaTeclado.setSelectedIndex(0);
+		this.cbLadosTeclas.setSelectedIndex(0);
 		//this.lbMens.setVisible(false);
 	}
 	
@@ -68,6 +69,8 @@ public class configurarTeclado extends javax.swing.JFrame {
         jtColumnas = new javax.swing.JTextField();
         jtPosiciones = new javax.swing.JTextField();
         btResetValores = new javax.swing.JButton();
+        cbLadosTeclas = new javax.swing.JComboBox();
+        cbFormaTeclado = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,14 +90,19 @@ public class configurarTeclado extends javax.swing.JFrame {
         lbMens.setBorder(new javax.swing.border.MatteBorder(null));
         lbMens.setOpaque(true);
 
+        lbFilas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbFilas.setText("Filas:");
 
+        lbColumnas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbColumnas.setText("Columnas:");
 
+        lbPosiciones.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbPosiciones.setText("Posiciones:");
 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Lados teclas:");
 
+        lbFormaTeclado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbFormaTeclado.setText("Forma Teclado:");
 
         jtFilas.setText("jTextField1");
@@ -115,6 +123,10 @@ public class configurarTeclado extends javax.swing.JFrame {
             }
         });
 
+        cbLadosTeclas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Seleccione lados teclas--", "4 lados", "6 lados" }));
+
+        cbFormaTeclado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Seleccione forma teclado--", "Rectangular", "Hexagonal" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,30 +138,34 @@ public class configurarTeclado extends javax.swing.JFrame {
                         .addComponent(lbTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
                             .addComponent(lbFormaTeclado)
+                            .addComponent(lbPosiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbPosiciones)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbFilas)
-                                    .addComponent(lbColumnas))))
-                        .addGap(18, 18, 18)
+                                .addComponent(lbColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lbFilas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(4, 4, 4)))
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jtColumnas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                            .addComponent(jtFilas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(jtPosiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                            .addComponent(jtColumnas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtFilas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtPosiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbFormaTeclado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbLadosTeclas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbMens, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btAtras)
-                                .addGap(18, 18, 18)
-                                .addComponent(btGuardar))))
+                        .addGap(22, 22, 22)
+                        .addComponent(btResetValores, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbMens, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(btResetValores, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(btAtras)
+                        .addGap(18, 18, 18)
+                        .addComponent(btGuardar)))
+                .addGap(81, 81, 81))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,10 +185,14 @@ public class configurarTeclado extends javax.swing.JFrame {
                     .addComponent(lbPosiciones)
                     .addComponent(jtPosiciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cbLadosTeclas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbFormaTeclado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbFormaTeclado)
+                    .addComponent(cbFormaTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btResetValores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbMens)
@@ -195,19 +215,38 @@ public class configurarTeclado extends javax.swing.JFrame {
 		
     }//GEN-LAST:event_btResetValoresActionPerformed
 
+	void mostrarMensaje(String mens) {
+		this.lbMens.setText(mens);
+	}
+	
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
         try {
 			int columnas = Integer.parseInt(this.jtColumnas.getText());
 			int filas = Integer.parseInt(this.jtFilas.getText());
 			int posiciones = Integer.parseInt(this.jtPosiciones.getText());
+			String forma = (String)cbFormaTeclado.getSelectedItem();
+			boolean lados = false;
+			if (cbLadosTeclas.getSelectedIndex() == 1) lados = true;
+			if (cbLadosTeclas.getSelectedIndex() == 2) lados = false;
+			
+			boolean errorCampoVacio = false;
+			if ("".equals(columnas))	errorCampoVacio = true;
+			if ("".equals(filas))		errorCampoVacio = true;
+			if ("".equals(posiciones))	errorCampoVacio = true;
+			if (cbLadosTeclas.getSelectedIndex() == 0)	errorCampoVacio = true;
+			if (cbFormaTeclado.getSelectedIndex() == 0)	errorCampoVacio = true;
+			
+			if (errorCampoVacio) {
+				mostrarMensaje("Debe escoger todos los campos");
+			}
 			
 			teclado tec = new teclado(forma, filas, columnas, posiciones, lados);
 			limpiarCampos();
 			
-			this.lbMens.setText("Teclado guardado");
+			mostrarMensaje("Teclado guardado");
 
 		} catch (Exception e) {
-			this.lbMens.setText("Error de guardado");
+			mostrarMensaje("Error de guardado");
 		}
     }//GEN-LAST:event_btGuardarActionPerformed
 
@@ -250,6 +289,8 @@ public class configurarTeclado extends javax.swing.JFrame {
     private javax.swing.JButton btAtras;
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btResetValores;
+    private javax.swing.JComboBox cbFormaTeclado;
+    private javax.swing.JComboBox cbLadosTeclas;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jtColumnas;
     private javax.swing.JTextField jtFilas;

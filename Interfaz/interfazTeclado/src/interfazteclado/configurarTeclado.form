@@ -31,40 +31,44 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="lbFormaTeclado" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbPosiciones" alignment="1" min="-2" pref="82" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="lbPosiciones" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="lbFilas" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbColumnas" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbColumnas" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lbFilas" min="-2" pref="78" max="-2" attributes="0"/>
+                                  <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jtColumnas" alignment="0" pref="71" max="32767" attributes="0"/>
-                          <Component id="jtFilas" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jtPosiciones" pref="0" max="32767" attributes="0"/>
+                          <Component id="jtColumnas" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
+                          <Component id="jtFilas" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
+                          <Component id="jtPosiciones" min="-2" pref="245" max="-2" attributes="0"/>
+                          <Component id="cbFormaTeclado" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbLadosTeclas" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbMens" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btAtras" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Component id="btResetValores" min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="47" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="btResetValores" min="-2" pref="141" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lbMens" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btAtras" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,10 +93,16 @@
                   <Component id="jtPosiciones" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbLadosTeclas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lbFormaTeclado" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbFormaTeclado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbFormaTeclado" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="btResetValores" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lbMens" min="-2" max="-2" attributes="0"/>
@@ -141,26 +151,31 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbFilas">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Filas:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbColumnas">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Columnas:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbPosiciones">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Posiciones:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Lados teclas:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbFormaTeclado">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Forma Teclado:"/>
       </Properties>
     </Component>
@@ -189,6 +204,28 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btResetValoresActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbLadosTeclas">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="--Seleccione lados teclas--"/>
+            <StringItem index="1" value="4 lados"/>
+            <StringItem index="2" value="6 lados"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbFormaTeclado">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="--Seleccione forma teclado--"/>
+            <StringItem index="1" value="Rectangular"/>
+            <StringItem index="2" value="Hexagonal"/>
+          </StringArray>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
