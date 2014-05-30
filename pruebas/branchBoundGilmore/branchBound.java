@@ -166,6 +166,7 @@ public class branchBound {
             asig.add(p.get(n));
             p.remove(n);
         }
+        costeParcial = costeFinal(asig);
         int x = 0;
         int y = 0;
         for(int i=0; i < mida*100; ++i) {
@@ -173,18 +174,16 @@ public class branchBound {
                 for( int n = 0; n < mida; ++n) {
                     Collections.swap(asig, m, n);
                     double costSwap = costeFinal(asig);
-                    Collections.swap(asig, m, n);
-                    if(costSwap < costeParcial) {
-                        x = m;
-                        y = n;    
-                    }
+                    if(costSwap < costeParcial) costeParcial = costSwap;
+                    else Collections.swap(asig, m, n);
+                    
                     
                 }
-                Collections.swap(asig, x,y);
+                
             }
             
         }
-        mejorCost = costeFinal(asig);
+        mejorCost = costeParcial;
         System.out.println("Mejor coste "+ mejorCost);
         
         
