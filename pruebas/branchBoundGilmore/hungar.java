@@ -56,13 +56,13 @@ public class hungar {
         for (int j = 0; j < a; ++j) {
             colselec[j] = -1;                 //No hay columna seleccionada
         }
-        inisel(M);
+        inisel(M);                           // Reduzco la matriz
         filcub = new boolean[filinicub.length];
         colcub = new boolean[colinicub.length];
-        cubcolceros();
+        cubcolceros();                       // Marco las columnas con zeros
         boolean aa = false;
         while (!aa) {
-            int[] cerosel = selceros(M, filnosel);
+            int[] cerosel = selceros(M, filnosel); //
             boolean entradainv = false;
 
             while (cerosel == null) {              
@@ -71,6 +71,11 @@ public class hungar {
                     break;
                 }
                 cerosel = selceros(M, filnosel);
+                System.out.println("Valorde de cerosel ");
+                for(int u = 0; u < cerosel.length;++u) {
+                    System.out.print(cerosel[u]+ " ");
+                }
+                System.out.println("");
                 entradainv = false;
             }
             if (entradainv) {
@@ -160,8 +165,8 @@ public class hungar {
         for (int i = 0; i < M2.length; i++) {
             for (int j = 0; j < M2[i].length; j++) {
                 if (0 == M2[i][j] && !filaconcero[i] && !colconcero[j]) {
-                    filselec[i] = j;                    // Inserto donde tengo 
-                    colselec[j] = i;                    // un zero
+                    filselec[i] = j;                    // Filas y columnas con 
+                    colselec[j] = i;                    // zeros
                     filaconcero[i] = true;
                     colconcero[j] = true;
                     break;
@@ -181,12 +186,12 @@ public class hungar {
     // Devuelvo un int[] donde para cada fila i hay una columna j con zero
     private int[] selceros(double M[][], int[] filnosel) {
         for (int i = 0; i < M.length; i++) {
-            if (filcub[i]) {
+            if (filcub[i]) {                // Si una fila esta cubierta 
                 continue;
             }
             for (int j = 0; j < M[i].length; j++) {
-                if (0 == M[i][j] && !colcub[j]) {
-                    filnosel[i] = j;
+                if (0 == M[i][j] && !colcub[j]) {  // Miro si tiene alguna columna 
+                    filnosel[i] = j;               // con zeros
                     return new int[]{i, j};
                 }
             }
