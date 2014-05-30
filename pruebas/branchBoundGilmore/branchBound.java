@@ -10,6 +10,7 @@
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Vector;
@@ -143,13 +144,57 @@ public class branchBound {
                 mejorSolucion = new Node(p,s,mejorCost);
             }
         }
+        System.out.println("Mejor coste "+ mejorCost);  
+    }
+    public double costeFinal(Vector<Integer> asignados) {
+        double costeParcial = 0;
+        for(int n=0; n < mida; ++n){
+            for(int m=0; m < mida;++m) {
+               costeParcial += estadistica[n][m]* distancia[asignados.get(n)][asignados.get(m)];
+            }
+        }
+        return costeParcial;
+    }
+    public void greedy3 () {
+        double costeParcial = 0;
+        Vector<Integer> p = new Vector<Integer> ();
+        for(int i=0; i < mida;++i) p.add(i);
+        Vector<Integer> asig = new Vector<Integer> ();
+        while(!p.isEmpty()){
+            Random randomGenerator = new Random();
+            int n = randomGenerator.nextInt(p.size());
+            asig.add(p.get(n));
+            p.remove(n);
+        }
+        int x = 0;
+        int y = 0;
+        for(int i=0; i < mida*100; ++i) {
+            for(int m = 0; m < mida; ++m) {
+                for( int n = 0; n < mida; ++n) {
+                    Collections.swap(asig, m, n);
+                    double costSwap = costeFinal(asig);
+                    Collections.swap(asig, m, n);
+                    if(costSwap < costeParcial) {
+                        x = m;
+                        y = n;    
+                    }
+                    
+                }
+                Collections.swap(asig, x,y);
+            }
+            
+        }
+        mejorCost = costeFinal(asig);
         System.out.println("Mejor coste "+ mejorCost);
-
-        
         
         
         
     }
+    
+    
+    
+    
+    
     
     /**
      * Metode per comprobar si una possible solucio 

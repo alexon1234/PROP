@@ -11,9 +11,13 @@ public class hungaro{
     
 
 
-    public int[][] assignaciones(int[][] matrix) {
-
-
+    public double assignaciones(double [][] matrix) {
+        double[][] M = new double [matrix.length][matrix[0].length];
+        for(int i = 0; i < M.length; ++i) {
+            for(int j = 0; j < M[0].length;++j) {
+                M[i][j] = matrix[i][j];
+            }
+        }
         // subtract minumum value from rows and columns to create lots of zeroes
         reduce_matriz(matrix);
 
@@ -61,12 +65,13 @@ public class hungaro{
 
         // ok now we should have assigned everything
         // take the starred zeroes in each column as the correct assignments
-
+        double cost = 0;
         int[][] retval = new int[matrix.length][];
         for (int i = 0; i < starsByCol.length;  i++) {
             retval[i] = new int[]{starsByCol[i],i};
+            cost += M[starsByCol[i]][i];
         }
-        return retval;
+        return cost;
 
 
 
@@ -90,12 +95,12 @@ public class hungaro{
      *
      * @return the next step to perform
      */
-    private void reduce_matriz(int[][] matrix) {
+    private void reduce_matriz(double[][] matrix) {
 
         for (int i = 0; i < matrix.length; i++) {
 
             // find the min value in the row
-            float minValInRow = Float.MAX_VALUE;
+            double minValInRow = Float.MAX_VALUE;
             for (int j = 0; j < matrix[i].length; j++) {
                 if (minValInRow > matrix[i][j]) {
                     minValInRow = matrix[i][j];
@@ -109,7 +114,7 @@ public class hungaro{
         }
 
         for (int i = 0; i < matrix[0].length; i++) {
-            float minValInCol = Float.MAX_VALUE;
+            double minValInCol = Float.MAX_VALUE;
             for (int j = 0; j < matrix.length; j++) {
                 if (minValInCol > matrix[j][i]) {
                     minValInCol = matrix[j][i];
@@ -138,7 +143,7 @@ public class hungaro{
      * @param coveredCols
      * @return the next step to perform
      */
-    private void inicio(int costMatrix[][], int[] starsByRow, int[] starsByCol) {
+    private void inicio(double costMatrix[][], int[] starsByRow, int[] starsByCol) {
 
 
         int [] rowHasStarredZero = new int[costMatrix.length];
@@ -178,7 +183,7 @@ public class hungaro{
      * @param coveredCols
      * @return
      */
-    private int[] primera_solucion_sin_ceros(int matrix[][], int[] primesByRow,
+    private int[] primera_solucion_sin_ceros(double matrix[][], int[] primesByRow,
                                        int[] coveredRows, int[] coveredCols) {
 
 
@@ -242,10 +247,10 @@ public class hungaro{
     }
 
 
-    private void haz_zeros(int [][] matrix, int[] coveredRows, int[] coveredCols) {
+    private void haz_zeros(double [][] matrix, int[] coveredRows, int[] coveredCols) {
 
         // find the minimum uncovered value
-        float minUncoveredValue = Float.MAX_VALUE;
+        double minUncoveredValue = Float.MAX_VALUE;
         for (int i = 0; i < matrix.length; i++) {
             if (0 == coveredRows[i]) {
                 for (int j = 0; j < matrix[i].length; j++) {

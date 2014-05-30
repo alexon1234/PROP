@@ -28,8 +28,8 @@ public class gilmore {
 
     }
     
-    public double g(int[] asignado) {
-        double cost = 0;
+    public float g(int[] asignado) {
+        float cost = 0;
         for(int i=0; i < asignado.length; ++i) {
             for(int j=0; j < asignado.length; ++j) {
                 if(asignado[i] != -1 && asignado[j]!= -1) cost += estadisticas[i][j]*distancia[asignado[j]][asignado[i]];
@@ -39,14 +39,14 @@ public class gilmore {
         return cost;
     }
     
-    public double[][] termino2(Vector<Integer> pendiente, int[] asignado, int pos, double costeFijo) {
-        double [][] matriz2 = new double [pendiente.size()][pendiente.size()];
+    public float[][] termino2(Vector<Integer> pendiente, int[] asignado, int pos, float costeFijo) {
+        float [][] matriz2 = new float [pendiente.size()][pendiente.size()];
         int l = 0;
         for(int i =0; i < pendiente.size();++i) {
             for(int j = 0; j < asignado.length; ++j) {
                 if(asignado[j] == -1 ) {
                     asignado[j] = pendiente.get(i);
-                    double cost = g(asignado);
+                    float cost = g(asignado);
                     matriz2[i][l] = cost - costeFijo;
                     ++l;
                     asignado[j] = -1;
@@ -66,13 +66,13 @@ public class gilmore {
         return matriz2;
     }
     
-    public double[][] termino3 (Vector<Integer> pendiente, int[] asignado, int pos) {
+    public float [][] termino3 (Vector<Integer> pendiente, int[] asignado, int pos) {
         int mida = asignado.length-pendiente.size();
-        double [][] matriz3 = new double[pendiente.size()][pendiente.size()];
-        int [][] flujo = new int [pendiente.size()][pendiente.size()];
-        double [][] distancias = new double [pendiente.size()] [pendiente.size()];
-        int [] flux = new int [pendiente.size()];
-        double [] dist = new double [pendiente.size()];
+        float [][] matriz3 = new float[pendiente.size()][pendiente.size()];
+        float [][] flujo = new float [pendiente.size()][pendiente.size()];
+        float [][] distancias = new float [pendiente.size()] [pendiente.size()];
+        float [] flux = new float [pendiente.size()];
+        float [] dist = new float [pendiente.size()];
        
         int k = 0; int m = 0;
         for (int i = 0; i < asignado.length; ++i) {
@@ -175,24 +175,24 @@ public class gilmore {
     
     
     
-    public double h(Vector<Integer> pendiente, int[] asignado, int pos,double costeFijo) {
-        double [][] matriz2 = termino2 (pendiente,asignado,pos,costeFijo);
-        double [][] matriz3 = termino3 (pendiente,asignado,pos);
-        double [][] matriz = new double[matriz2[0].length][matriz2[0].length];
+    public float h(Vector<Integer> pendiente, int[] asignado, int pos,float costeFijo) {
+        float [][] matriz2 = termino2 (pendiente,asignado,pos,costeFijo);
+        float [][] matriz3 = termino3 (pendiente,asignado,pos);
+        float [][] matriz = new float[matriz2[0].length][matriz2[0].length];
         for(int i = 0; i < matriz2[0].length; ++i) {
             for(int j = 0; j < matriz2[0].length;++j) {
                 matriz[i][j] = matriz2[i][j]+ matriz3[i][j];
             }
         }
         hungar hungaro = new hungar();
-        double cost = hungaro.eje(matriz);
+        float cost = hungaro.eje(matriz);
         return cost;
     }
     
     
     public double calcularCoste(Vector<Integer> pendiente, int[] asignado, int pos) {
-        double costeReal = g(asignado); 
-        double costeAprox=0;
+        float costeReal = g(asignado); 
+        float costeAprox=0;
         if(!pendiente.isEmpty()) costeAprox = h(pendiente,asignado,pos,costeReal);   
         return costeReal+costeAprox;
     }

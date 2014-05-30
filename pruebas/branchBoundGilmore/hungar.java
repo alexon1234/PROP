@@ -34,8 +34,8 @@ public class hungar {
         colselec = null;
     }
     
-    public double eje(double[][] M) {
-        double [][] matriz = new double [M.length][M[0].length];
+    public float eje(float[][] M) {
+        float [][] matriz = new float [M.length][M[0].length];
         for(int i=0; i < M.length;++i) {
             for(int j=0; j < M[0].length;++j) {
                 matriz[i][j] = M[i][j];
@@ -64,29 +64,35 @@ public class hungar {
         while (!aa) {
             int[] cerosel = selceros(M, filnosel); //
             boolean entradainv = false;
-
-            while (cerosel == null) {              
-                if (!continua(M)) {
+            while (cerosel == null) {  
+                if(!continua(M)) {
                     entradainv = true;
                     break;
                 }
                 cerosel = selceros(M, filnosel);
-                System.out.println("Valorde de cerosel ");
+            }  
+            if(entradainv) break;       
+                    
+                
+                
+              /*  System.out.println("Valorde de cerosel ");
                 for(int u = 0; u < cerosel.length;++u) {
                     System.out.print(cerosel[u]+ " ");
                 }
                 System.out.println("");
-                entradainv = false;
-            }
-            if (entradainv) {
-                break;
-            }
+                System.out.println("Mida de la matriz " + M.length +" " + M[0].length);
+                for(int u = 0; u < M.length;++u) {
+                    for(int v = 0; v < M[0].length;++v) {
+                        System.out.print(M[u][v] + " ");
+                    }
+                    System.out.println("");
+                }*/
             int columnIndex = filselec[cerosel[0]];
-            if (-1 == columnIndex) {
+            if (-1 == columnIndex) {;
                 marceros(cerosel, filnosel);
-                for (int i = 0; i < filnosel.length; ++i) filnosel[i] = -1;
-                colcub = colinicub;
-                filcub = filinicub;
+                Arrays.fill(filnosel, -1);
+                Arrays.fill(colcub, false);
+                Arrays.fill(filcub, false);
                 cubcolceros();
             } else {
                 filcub[cerosel[0]] = true;
@@ -99,13 +105,7 @@ public class hungar {
                 }
             }
         }
-        boolean trobat = false;
-        for(int i=0; i < colselec.length;++i) {
-            if(colselec[i] == -1) trobat = true;
-        }
-        if(trobat) System.out.println("trobat " + trobat);
-        if(trobat) colselec = buscarSolucionAlternativa(matriz);
-        double cost = 0;
+        float cost = 0;
         int[][] retval = new int[a][];
         for (int i = 0; i < a; i++) {
             if (colselec[i] != -1) {
@@ -116,10 +116,10 @@ public class hungar {
         return cost;
     }
     // Resto el minimo de la fila y el minimo de la columna
-    private void ini(double[][] M) {
+    private void ini(float[][] M) {
         boolean b = false;
         for (int i = 0; i < M.length; i++) {
-            double min = Integer.MAX_VALUE;
+            float min = Float.MAX_VALUE;
             for (int j = 0; j < M[i].length; j++) {
                 if (min > M[i][j]) {
                     min = M[i][j];           //Cojo el minimo
@@ -138,7 +138,7 @@ public class hungar {
         }
         b = false;
         for (int j = 0; j < a; j++) {
-            double mincol = Integer.MAX_VALUE;
+            float mincol = Float.MAX_VALUE;
             for (int i = 0; i < M.length; i++) {
                 if (mincol > M[i][j]) {
                     mincol = M[i][j];       //Cojo el min
@@ -148,7 +148,7 @@ public class hungar {
 
             if (b) {                        //Si hay minimo
                 for (int i = 0; i < M.length; i++) {
-                    if (M[i][j] < Integer.MAX_VALUE) {
+                    if (M[i][j] < Float.MAX_VALUE) {
                         M[i][j] -= mincol; //resto el minimo
                     }
                 }
@@ -157,8 +157,8 @@ public class hungar {
             }
         }
     }
-    private void inisel(double M2[][]) {
-
+    // Inicializo los vectores marcando donde estan los zeros
+    private void inisel(float M2[][]) {
         boolean[] filaconcero = new boolean[M2.length]; //Filas con zero
         boolean[] colconcero = new boolean[a];          //Columnas con zero
 
@@ -184,11 +184,9 @@ public class hungar {
         }
     }
     // Devuelvo un int[] donde para cada fila i hay una columna j con zero
-    private int[] selceros(double M[][], int[] filnosel) {
+    private int[] selceros(float M[][], int[] filnosel) {
         for (int i = 0; i < M.length; i++) {
-            if (filcub[i]) {                // Si una fila esta cubierta 
-                continue;
-            }
+            if (filcub[i])  continue;          // Si una fila esta cubierta 
             for (int j = 0; j < M[i].length; j++) {
                 if (0 == M[i][j] && !colcub[j]) {  // Miro si tiene alguna columna 
                     filnosel[i] = j;               // con zeros
@@ -199,7 +197,7 @@ public class hungar {
         return null;
     }
     
-    private void marceros(int[] cerodesparej, int[] filnosel) {
+    private void marceros(int[] cerodesparej, int[] filnosel) {;
         int i;
         int j = cerodesparej[1];
         ArrayList<int[]> secero = new ArrayList<int[]>();
@@ -213,7 +211,8 @@ public class hungar {
             }
             j = filnosel[i];
             apareao = -1 != j && secero.add(new int[]{i, j});
-        } while (apareao);
+        } 
+        while (apareao);
         for (int[] zero : secero) {
             if (colselec[zero[1]] == zero[0]) {
                 colselec[zero[1]] = -1;
@@ -226,7 +225,7 @@ public class hungar {
             }
         }
     }
-    private int[] buscarSolucionAlternativa(double [][] M) {
+  /*  private int[] buscarSolucionAlternativa(double [][] M) {
 		double[][] matriz = new double[M.length][M.length];
 		for (int i = 0; i < M.length; i++) {
 			for(int j = 0; j < M.length; j++) {
@@ -268,10 +267,10 @@ public class hungar {
 			}
 		}
 		return solucio;
-    }
-    
-    private boolean continua(double[][] M) {
-        double min = Integer.MAX_VALUE;
+    }*/
+    // Sumo a la matriz el minimo y resto el minimo
+    private boolean continua(float[][] M) {
+        float min = Float.MAX_VALUE;
         for (int i = 0; i < M.length; i++) {
             if (!filcub[i]) {
                 for (int j = 0; j < M[i].length; j++) {
@@ -281,13 +280,13 @@ public class hungar {
                 }
             }
         }
-        if (min >= Integer.MAX_VALUE) {
+        if (min >= Float.MAX_VALUE) {
             return false;
         }
         for (int i = 0; i < filcub.length; i++) {
             if (filcub[i]) {
                 for (int j = 0; j < M[i].length; j++) {
-                    if (M[i][j] < Integer.MAX_VALUE) {
+                    if (M[i][j] < Float.MAX_VALUE) {
                         M[i][j] += min;
                     }
                 }
@@ -296,13 +295,14 @@ public class hungar {
         for (int j = 0; j < colcub.length; j++) {
             if (!colcub[j]) {
                 for (int i = 0; i < M.length; i++) {
-                    if (M[i][j] < Integer.MAX_VALUE) {
+                    if (M[i][j] < Float.MAX_VALUE) {
                         M[i][j] -= min;
                     }
                 }
             }
         }
-
         return true;
+
     }
 }
+
