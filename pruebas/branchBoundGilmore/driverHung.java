@@ -29,7 +29,7 @@ public class driverHung {
         double cost = g.g(asignado);
         
         
-        double [][] matrix = { /*{250,400,350},
+        float [][] matrix = { /*{250,400,350},
                             {400,600,350},
                             {200,400,250} };
                             */{82,83,69,92},
