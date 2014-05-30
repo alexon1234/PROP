@@ -190,7 +190,7 @@ public class gilmore {
     }
     
     
-    public double calcularCoste(Vector<Integer> pendiente, int[] asignado, int pos) {
+    public double calcularCoste(Vector<Integer> pendiente, int[] asignado, int pos) {;
         float costeReal = g(asignado); 
         float costeAprox=0;
         if(!pendiente.isEmpty()) costeAprox = h(pendiente,asignado,pos,costeReal);   

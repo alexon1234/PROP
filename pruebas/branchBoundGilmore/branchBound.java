@@ -63,7 +63,7 @@ public class branchBound {
         
         nodes = new PriorityQueue<Node> (1,new NodeComparador()); 
         nodes.add(mejorSolucion);          
-        greedy();
+        greedy3();
         g = new gilmore(estadistica,distancia);
         solve();
 
@@ -167,20 +167,29 @@ public class branchBound {
             p.remove(n);
         }
         costeParcial = costeFinal(asig);
+        mejorCost = costeParcial;
         int x = 0;
         int y = 0;
-        for(int i=0; i < mida*100; ++i) {
+        for(int i=0; i < mida*mida; ++i) {
             for(int m = 0; m < mida; ++m) {
-                for( int n = 0; n < mida; ++n) {
+                for( int n = 0; n < mida; ++n) { ; 
                     Collections.swap(asig, m, n);
                     double costSwap = costeFinal(asig);
-                    if(costSwap < costeParcial) costeParcial = costSwap;
+                    if(costSwap < costeParcial) {
+                        x = m;
+                        y = n;
+                        costeParcial = costSwap;
+                    }
                     else Collections.swap(asig, m, n);
                     
                     
                 }
                 
             }
+            if(costeParcial < mejorCost) {
+                mejorCost = costeParcial;
+            }
+            
             
         }
         mejorCost = costeParcial;

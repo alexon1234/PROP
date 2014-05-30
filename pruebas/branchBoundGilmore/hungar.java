@@ -64,7 +64,7 @@ public class hungar {
         while (!aa) {
             int[] cerosel = selceros(M, filnosel); //
             boolean entradainv = false;
-            while (cerosel == null) {  
+            while (cerosel == null) { 
                 if(!continua(M)) {
                     entradainv = true;
                     break;
