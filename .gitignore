@@ -1,3 +1,5 @@
 *.swp
 *.o
 moc_*
+/Interfaz/interfazTeclado/nbproject/private/
+/Interfaz/interfazTeclado/build/

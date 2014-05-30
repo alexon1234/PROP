@@ -1,0 +1,21 @@
+Reparto del trabajo:
+
+•	Grupo Teclado:
+		gabriel.carrillo:
+			distanciaCluster.java
+		alejandro.del.amo:
+			afinidad.java
+			branchBound.java
+	
+•	Grupo Biblioteca:
+		marc.llibre:
+			nodo.java
+			conjuntoNodos.java
+	
+•	Grupo Planeta:
+		pedro.moreno:
+			ctrlPersistencia.java
+		marti.roig:
+			elemento.java
+		joaquin.campos:
+			adaptadorQAP.java
