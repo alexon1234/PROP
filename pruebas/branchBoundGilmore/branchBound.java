@@ -155,49 +155,43 @@ public class branchBound {
         }
         return costeParcial;
     }
-    public void greedy3 () {
-        double costeParcial = 0;
-        Vector<Integer> p = new Vector<Integer> ();
-        for(int i=0; i < mida;++i) p.add(i);
+   public void greedy3 () {
+		
         Vector<Integer> asig = new Vector<Integer> ();
-        while(!p.isEmpty()){
-            Random randomGenerator = new Random();
-            int n = randomGenerator.nextInt(p.size());
-            asig.add(p.get(n));
-            p.remove(n);
-        }
-        costeParcial = costeFinal(asig);
-        mejorCost = costeParcial;
-        int x = 0;
-        int y = 0;
-        for(int i=0; i < mida*mida; ++i) {
+		
+        for(int i=0; i < mida;++i) asig.add(i);
+		
+        double mejorCost =  costeFinal(asig);
+	
+		for(int i=0; i < mida*mida; ++i) {
+			
+			
+			double temp = -1;
+			int x = 0;
+			int y = 0;
+			
             for(int m = 0; m < mida; ++m) {
-                for( int n = 0; n < mida; ++n) { ; 
-                    Collections.swap(asig, m, n);
-                    double costSwap = costeFinal(asig);
-                    if(costSwap < costeParcial) {
-                        x = m;
-                        y = n;
-                        costeParcial = costSwap;
-                    }
-                    else Collections.swap(asig, m, n);
+                for( int n = 0; n < mida; ++n) {
+					Collections.swap(asig, m, n);
                     
+					double costSwap = costeFinal(asig);
                     
+					Collections.swap(asig, m, n);
+					
+					if(temp == -1 || costSwap < temp) {
+                        temp = costSwap;
+						x = m;
+						y = n;
+                    }                   
                 }
-                
             }
-            if(costeParcial < mejorCost) {
-                mejorCost = costeParcial;
-            }
-            
-            
-        }
-        mejorCost = costeParcial;
-        System.out.println("Mejor coste "+ mejorCost);
-        
-        
-        
-    }
+			if (temp != -1 && temp < mejorCost){
+				Collections.swap(asig,x,y);
+				mejorCost = temp;
+			}
+		}
+		System.out.println("Mejor coste "+ mejorCost);
+	}
     
     
     

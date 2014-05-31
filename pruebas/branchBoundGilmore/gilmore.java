@@ -17,14 +17,16 @@ import java.util.Vector;
  * @author alex
  */
 public class gilmore {
-    
+    private hungar hungaro;
     private int[][] estadisticas;
     private int[][] distancia;
+    private float [][] matriz2;
     
     public gilmore(){};
     public gilmore(int [][] estadistica, int [][] distancia){
         this.estadisticas = estadistica;
         this.distancia = distancia;
+        hungaro = new hungar();
 
     }
     
@@ -40,7 +42,7 @@ public class gilmore {
     }
     
     public float[][] termino2(Vector<Integer> pendiente, int[] asignado, int pos, float costeFijo) {
-        float [][] matriz2 = new float [pendiente.size()][pendiente.size()];
+        matriz2 = new float [pendiente.size()][pendiente.size()];
         int l = 0;
         for(int i =0; i < pendiente.size();++i) {
             for(int j = 0; j < asignado.length; ++j) {
@@ -184,7 +186,6 @@ public class gilmore {
                 matriz[i][j] = matriz2[i][j]+ matriz3[i][j];
             }
         }
-        hungar hungaro = new hungar();
         float cost = hungaro.eje(matriz);
         return cost;
     }
