@@ -14,6 +14,7 @@ import javax.swing.JList;
  * @author josep
  */
 public class configurarCTextos extends javax.swing.JFrame {
+    conjuntoTexto conjuntoT = new conjuntoTexto();
     alfabeto alfabetoElegido = new alfabeto();
     DefaultListModel modeloFrom = new DefaultListModel();
     DefaultListModel modeloTo = new DefaultListModel();
@@ -208,8 +209,10 @@ public class configurarCTextos extends javax.swing.JFrame {
         // TODO add your handling code here:
         //formaTeclado formaT = new formaTeclado(configurarCTextos.this);
         //formaT.setVisible(true);
+        ini.recibirCTextos(conjuntoT);
         configurarCTextos.this.setVisible(false);
         ini.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_bAceptarActionPerformed
 
@@ -223,6 +226,7 @@ public class configurarCTextos extends javax.swing.JFrame {
         // TODO add your handling code here:
         configurarCTextos.this.setVisible(false);
         ini.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_bAtrasActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked

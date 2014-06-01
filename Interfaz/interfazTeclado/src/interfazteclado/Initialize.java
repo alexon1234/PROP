@@ -17,6 +17,8 @@ public class Initialize extends javax.swing.JFrame {
 	 */
     
     teclado tec = new teclado();
+    alfabeto alf = new alfabeto();
+    conjuntoTexto conjuntoT = new conjuntoTexto();
     
     
 	
@@ -33,11 +35,22 @@ public class Initialize extends javax.swing.JFrame {
 	
     public void recibirTeclado(teclado tec) {
         this.tec = tec;
+        System.out.println(tec.getNumeroColumnas() + "  " + tec.getNumeroFilas());
+    }
+    
+    public void recibirAlfabeto(alfabeto alf) {
+        this.alf = alf;
+        System.out.println(alf.getNombreAlfabeto());
+    }
+    
+    public void recibirCTextos (conjuntoTexto conjuntoT) {
+        this.conjuntoT = conjuntoT;
+        System.out.println("numero de textos escogido = " + conjuntoT.getSizeConjunto());
     }
 	
-	public void recibirMsg(String s) {
-		this.lbMsg.setText(s);
-	}
+    public void recibirMsg(String s) {
+	this.lbMsg.setText(s);
+    }
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -167,9 +180,9 @@ public class Initialize extends javax.swing.JFrame {
     }//GEN-LAST:event_mnTecladoActionPerformed
 
     private void mnTecladoMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_mnTecladoMenuSelected
-   		Initialize.this.setVisible(false);
-		configurarTeclado confTeclado = new configurarTeclado(Initialize.this, tec);
-		confTeclado.setVisible(true);
+   	Initialize.this.setVisible(false);
+	configurarTeclado confTeclado = new configurarTeclado(Initialize.this, tec);
+	confTeclado.setVisible(true);
     }//GEN-LAST:event_mnTecladoMenuSelected
 
     private void mnTeclaMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_mnTeclaMenuSelected
@@ -180,14 +193,14 @@ public class Initialize extends javax.swing.JFrame {
 
     private void mnCjtoTextosMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_mnCjtoTextosMenuSelected
         Initialize.this.setVisible(false);
-		configurarCTextos confCT = new configurarCTextos();
-		confCT.setVisible(true);
+	configurarCTextos confCT = new configurarCTextos();
+	confCT.setVisible(true);
     }//GEN-LAST:event_mnCjtoTextosMenuSelected
 
     private void mnAlfabetoMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_mnAlfabetoMenuSelected
         Initialize.this.setVisible(false);
-		configurarAlfabeto confAlf = new configurarAlfabeto();
-		confAlf.setVisible(true);
+	configurarAlfabeto confAlf = new configurarAlfabeto(Initialize.this);
+	confAlf.setVisible(true);
     }//GEN-LAST:event_mnAlfabetoMenuSelected
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed

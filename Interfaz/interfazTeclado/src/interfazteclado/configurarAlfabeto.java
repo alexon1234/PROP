@@ -66,7 +66,7 @@ public class configurarAlfabeto extends javax.swing.JFrame {
         tLista = new JList(modeloLista);
         bCrearNuevo = new javax.swing.JButton();
         bAceptar = new javax.swing.JButton();
-        bCancelar = new javax.swing.JButton();
+        bAtras = new javax.swing.JButton();
         lAlfabetoElegido = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
@@ -103,10 +103,10 @@ public class configurarAlfabeto extends javax.swing.JFrame {
             }
         });
 
-        bCancelar.setText("Cancelar");
-        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+        bAtras.setText("Atrás");
+        bAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCancelarActionPerformed(evt);
+                bAtrasActionPerformed(evt);
             }
         });
 
@@ -133,8 +133,8 @@ public class configurarAlfabeto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bCrearNuevo, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(bCancelar)
-                                .addGap(18, 18, 18)
+                                .addComponent(bAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(bAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
@@ -159,8 +159,8 @@ public class configurarAlfabeto extends javax.swing.JFrame {
                         .addComponent(lAlfabetoElegido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bCancelar)
-                    .addComponent(bAceptar))
+                    .addComponent(bAceptar)
+                    .addComponent(bAtras))
                 .addContainerGap())
         );
 
@@ -173,10 +173,11 @@ public class configurarAlfabeto extends javax.swing.JFrame {
         configurarAlfabeto.this.setVisible(false);
     }//GEN-LAST:event_bCrearNuevoActionPerformed
 
-    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+    private void bAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtrasActionPerformed
         configurarAlfabeto.this.setVisible(false);
         init.setVisible(true);
-    }//GEN-LAST:event_bCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bAtrasActionPerformed
 
     private void tListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tListaMouseClicked
         int index = tLista.getSelectedIndex();
@@ -192,9 +193,10 @@ public class configurarAlfabeto extends javax.swing.JFrame {
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
         //configurarCTextos cct = new configurarCTextos(alfabetoElegido, configurarAlfabeto.this);
         //cct.setVisible(true);
-        init.setAlfabetoElegido(alfabetoElegido);
+        init.recibirAlfabeto(alfabetoElegido);
         configurarAlfabeto.this.setVisible(false);
         init.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_bAceptarActionPerformed
 
     public static void main(String args[]) {
@@ -231,7 +233,7 @@ public class configurarAlfabeto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAceptar;
-    private javax.swing.JButton bCancelar;
+    private javax.swing.JButton bAtras;
     private javax.swing.JButton bCrearNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
