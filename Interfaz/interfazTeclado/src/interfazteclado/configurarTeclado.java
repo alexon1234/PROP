@@ -290,7 +290,6 @@ public class configurarTeclado extends javax.swing.JFrame {
                                     init.recibirMsg("Teclado guardado");
                                     init.setVisible(true);
                                     this.setVisible(false);
-                                    //this.dispose();
                             }
                         }
 		} catch (Exception e) {
