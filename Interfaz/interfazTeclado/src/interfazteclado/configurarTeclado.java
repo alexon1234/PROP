@@ -12,22 +12,23 @@ public class configurarTeclado extends javax.swing.JFrame {
 	//controladorTeclado conTeclado = new controladorTeclado();
 	teclado tec = new teclado();
 	Initialize init = new Initialize();
+
 	
 	/**
 	 * Creates new form configurarTeclado
 	 */
 	
 	public configurarTeclado() {
-		initComponents();
-		limpiarCampos();
+            initComponents();
+            limpiarCampos();
 	}
 	
 	public configurarTeclado(Initialize init, teclado tec) {
-        this.tec = tec;
-		this.init = init;
-		initComponents();
-		limpiarCampos();
-		if (tec.getNumeroPosiciones() != 0)inicializarCampos();
+            this.tec = tec;
+            this.init = init;
+            initComponents();
+            limpiarCampos();
+            if ("".equals(jtPosiciones.getText())) inicializarCampos();
 	}
 	
 	
@@ -39,19 +40,28 @@ public class configurarTeclado extends javax.swing.JFrame {
 		ComboBoxModel cbm = this.cbFormaTeclado.getModel();
 		for (int i = 0; i < cbm.getSize(); ++i) {
 			if (cbm.getElementAt(i).toString().equals(tec.getForma())) {
-				this.cbFormaTeclado.setSelectedItem(i);
-				return;
+				this.cbFormaTeclado.setSelectedIndex(i);
+				System.out.println("elemento " + cbm.getElementAt(i).toString() + " de la forma " + tec.getForma());
+				break;
 			}
 		}
 		ComboBoxModel cbmod = this.cbLadosTeclas.getModel();
 		int pos = 0;
-		if (tec.getTeclasDe4Lados()) pos = 1;
-		for (int i = 0; i < cbmod.getSize(); ++i) {
-			if (cbmod.getElementAt(i).equals(pos)) {
-				this.cbLadosTeclas.setSelectedItem(i);
+		if ("0".equals(jtPosiciones.getText())) {
+		}
+		else {
+			if (tec.getTeclasDe4Lados()) pos = 1;
+			else pos = 2;
+		}
+		System.out.println("jtPosiciones = " + jtPosiciones.getText());
+		
+		this.cbLadosTeclas.setSelectedIndex(pos);
+		/*for (int i = 0; i < cbmod.getSize(); ++i) {
+			if (cbmod.getIn(i).toString().equals(pos)) {
+				this.cbLadosTeclas.setSelectedIndex(i);
 				return;
 			}
-		}
+		}*/
 		this.lbMens.setText("Valores anteriores");
 	}
 
@@ -244,19 +254,19 @@ public class configurarTeclado extends javax.swing.JFrame {
 		
     }//GEN-LAST:event_btResetValoresActionPerformed
 
-	void mostrarMensaje(String mens) {
-		this.lbMens.setText(mens);
+    public void mostrarMensaje(String mens) {
+            this.lbMens.setText(mens);
 	}
 	
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
         try {
-			int columnas = Integer.parseInt(this.jtColumnas.getText());
-			int filas = Integer.parseInt(this.jtFilas.getText());
-			int posiciones = Integer.parseInt(this.jtPosiciones.getText());
-			String forma = (String)cbFormaTeclado.getSelectedItem();
-			boolean lados = false;
+            int columnas = Integer.parseInt(this.jtColumnas.getText());
+            int filas = Integer.parseInt(this.jtFilas.getText());
+            int posiciones = Integer.parseInt(this.jtPosiciones.getText());
+            String forma = (String)cbFormaTeclado.getSelectedItem();
+            boolean lados = false;
 			if (cbLadosTeclas.getSelectedIndex() == 1) lados = true;
-			if (cbLadosTeclas.getSelectedIndex() == 2) lados = false;
+			//if (cbLadosTeclas.getSelectedIndex() == 2) lados = false;
 			
 			boolean errorCampoVacio = false;
 			if ("".equals(columnas))	errorCampoVacio = true;
@@ -268,24 +278,24 @@ public class configurarTeclado extends javax.swing.JFrame {
 			if (errorCampoVacio) {
 				mostrarMensaje("Debe escoger todos los campos");
 			}
-			tec = new teclado(forma, filas, columnas, posiciones, lados);
-			limpiarCampos();
-			
-            init.recibirTeclado(tec);
-			init.recibirMsg("Teclado guardado");
-			mostrarMensaje("Teclado guardado");
-			
-			configurarTeclado.this.setVisible(false);
-			this.dispose();
-			init.setVisible(true);
-			
+			else {
+				tec = new teclado(forma, filas, columnas, posiciones, lados);
+				limpiarCampos();
+
+				init.recibirTeclado(tec);
+				init.recibirMsg("Teclado guardado");
+
+				this.setVisible(false);
+				this.dispose();
+				init.setVisible(true);
+			}
 		} catch (Exception e) {
 			mostrarMensaje("Error de guardado");
 		}
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void btAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtrasActionPerformed
-		configurarTeclado.this.setVisible(false);
+		this.setVisible(false);
 		init.inicializarCampos();
 		this.dispose();
 		init.setVisible(true);
