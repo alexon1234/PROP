@@ -41,7 +41,7 @@ public class configurarTeclado extends javax.swing.JFrame {
 		for (int i = 0; i < cbm.getSize(); ++i) {
 			if (cbm.getElementAt(i).toString().equals(tec.getForma())) {
 				this.cbFormaTeclado.setSelectedIndex(i);
-				System.out.println("elemento " + cbm.getElementAt(i).toString() + " de la forma " + tec.getForma());
+				//System.out.println("elemento " + cbm.getElementAt(i).toString() + " de la forma " + tec.getForma());
 				break;
 			}
 		}
@@ -53,15 +53,8 @@ public class configurarTeclado extends javax.swing.JFrame {
 			if (tec.getTeclasDe4Lados()) pos = 1;
 			else pos = 2;
 		}
-		System.out.println("jtPosiciones = " + jtPosiciones.getText());
 		
 		this.cbLadosTeclas.setSelectedIndex(pos);
-		/*for (int i = 0; i < cbmod.getSize(); ++i) {
-			if (cbmod.getIn(i).toString().equals(pos)) {
-				this.cbLadosTeclas.setSelectedIndex(i);
-				return;
-			}
-		}*/
 		this.lbMens.setText("Valores anteriores");
 	}
 
@@ -106,7 +99,6 @@ public class configurarTeclado extends javax.swing.JFrame {
         cbFormaTeclado = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 204, 51));
 
         lbTitulo.setText("Editar teclado:");
 
@@ -125,6 +117,7 @@ public class configurarTeclado extends javax.swing.JFrame {
         });
 
         lbMens.setBackground(new java.awt.Color(255, 51, 51));
+        lbMens.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMens.setText("jLabel1");
         lbMens.setBorder(new javax.swing.border.MatteBorder(null));
         lbMens.setOpaque(true);
@@ -199,12 +192,15 @@ public class configurarTeclado extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(btResetValores, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbMens, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btAtras)
                         .addGap(18, 18, 18)
                         .addComponent(btGuardar)))
-                .addGap(81, 81, 81))
+                .addGap(87, 87, 87))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbMens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,27 +274,36 @@ public class configurarTeclado extends javax.swing.JFrame {
 			if (errorCampoVacio) {
 				mostrarMensaje("Debe escoger todos los campos");
 			}
-			else {
-				tec = new teclado(forma, filas, columnas, posiciones, lados);
-				limpiarCampos();
+                        else {
+                            boolean errorPosiciones = false;
+                            if (posiciones > filas*columnas) errorPosiciones = true;
 
-				init.recibirTeclado(tec);
-				init.recibirMsg("Teclado guardado");
+                            if (errorPosiciones) {
+                                mostrarMensaje("filas*columnas HA DE SER >= posiciones");
+                            }
 
-				this.setVisible(false);
-				this.dispose();
-				init.setVisible(true);
-			}
+                            else {
+                                    tec = new teclado(forma, filas, columnas, posiciones, lados);
+                                    limpiarCampos();
+
+                                    init.recibirTeclado(tec);
+                                    init.recibirMsg("Teclado guardado");
+                                    init.setVisible(true);
+                                    this.setVisible(false);
+                                    //this.dispose();
+                            }
+                        }
 		} catch (Exception e) {
 			mostrarMensaje("Error de guardado");
 		}
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void btAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtrasActionPerformed
-		this.setVisible(false);
 		init.inicializarCampos();
-		this.dispose();
+                init.recibirMsg("Guardado cancelado");
+		//this.dispose();
 		init.setVisible(true);
+                this.setVisible(false);
     }//GEN-LAST:event_btAtrasActionPerformed
 
 	/**
