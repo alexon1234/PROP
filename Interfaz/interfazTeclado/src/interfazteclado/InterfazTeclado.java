@@ -8,7 +8,7 @@ package interfazteclado;
 
 /**
  *
- * @author josep + gabriel
+ * @author gabrielcarrillolopez
  */
 public class InterfazTeclado {
 

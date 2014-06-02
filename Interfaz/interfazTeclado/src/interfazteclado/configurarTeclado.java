@@ -6,14 +6,11 @@
  */
 package interfazteclado;
 
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
+import javax.swing.ComboBoxModel;
 
 public class configurarTeclado extends javax.swing.JFrame {
-	teclado tecladoEscogido = new teclado();
+	//controladorTeclado conTeclado = new controladorTeclado();
+	teclado tec = new teclado();
 	Initialize init = new Initialize();
 	
 	/**
@@ -21,10 +18,44 @@ public class configurarTeclado extends javax.swing.JFrame {
 	 */
 	
 	public configurarTeclado() {
-		limpiarCampos();
-		
 		initComponents();
+		limpiarCampos();
 	}
+	
+	public configurarTeclado(Initialize init, teclado tec) {
+        this.tec = tec;
+		this.init = init;
+		initComponents();
+		limpiarCampos();
+		if (tec.getNumeroPosiciones() != 0)inicializarCampos();
+	}
+	
+	
+	public void inicializarCampos() {
+		this.jtColumnas.setText(String.valueOf(tec.getNumeroColumnas()));
+		this.jtFilas.setText(String.valueOf(tec.getNumeroFilas()));
+		this.jtPosiciones.setText(String.valueOf(tec.getNumeroPosiciones()));
+		
+		ComboBoxModel cbm = this.cbFormaTeclado.getModel();
+		for (int i = 0; i < cbm.getSize(); ++i) {
+			if (cbm.getElementAt(i).toString().equals(tec.getForma())) {
+				this.cbFormaTeclado.setSelectedItem(i);
+				return;
+			}
+		}
+		ComboBoxModel cbmod = this.cbLadosTeclas.getModel();
+		int pos = 0;
+		if (tec.getTeclasDe4Lados()) pos = 1;
+		for (int i = 0; i < cbmod.getSize(); ++i) {
+			if (cbmod.getElementAt(i).equals(pos)) {
+				this.cbLadosTeclas.setSelectedItem(i);
+				return;
+			}
+		}
+		this.lbMens.setText("Valores anteriores");
+	}
+
+
 	
 	public void limpiarCampos() {
 		this.jtColumnas.setText("");
@@ -35,18 +66,10 @@ public class configurarTeclado extends javax.swing.JFrame {
 		this.cbLadosTeclas.setSelectedIndex(0);
 		//this.lbMens.setVisible(false);
 	}
+        
+     
 	
-	public void inicializar() {	//limpiar todos los campos al cargar
-		limpiarCampos();
-	}
 	
-	configurarTeclado(Initialize init) {
-		this.init = init;
-		
-		initComponents();
-		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,10 +96,16 @@ public class configurarTeclado extends javax.swing.JFrame {
         cbFormaTeclado = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 204, 51));
 
         lbTitulo.setText("Editar teclado:");
 
         btAtras.setText("Atrás");
+        btAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtrasActionPerformed(evt);
+            }
+        });
 
         btGuardar.setText("Guardar");
         btGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -239,16 +268,28 @@ public class configurarTeclado extends javax.swing.JFrame {
 			if (errorCampoVacio) {
 				mostrarMensaje("Debe escoger todos los campos");
 			}
-			
-			teclado tec = new teclado(forma, filas, columnas, posiciones, lados);
+			tec = new teclado(forma, filas, columnas, posiciones, lados);
 			limpiarCampos();
 			
+            init.recibirTeclado(tec);
+			init.recibirMsg("Teclado guardado");
 			mostrarMensaje("Teclado guardado");
-
+			
+			configurarTeclado.this.setVisible(false);
+			this.dispose();
+			init.setVisible(true);
+			
 		} catch (Exception e) {
 			mostrarMensaje("Error de guardado");
 		}
     }//GEN-LAST:event_btGuardarActionPerformed
+
+    private void btAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtrasActionPerformed
+		configurarTeclado.this.setVisible(false);
+		init.inicializarCampos();
+		this.dispose();
+		init.setVisible(true);
+    }//GEN-LAST:event_btAtrasActionPerformed
 
 	/**
 	 * @param args the command line arguments

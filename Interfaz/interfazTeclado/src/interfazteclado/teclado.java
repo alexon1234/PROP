@@ -29,7 +29,15 @@ public class teclado {
     private boolean teclasDe4Lados;
     
 //  Metodos
-	public teclado() {}				     //constructor por defecto
+	public teclado() {
+            formaTeclado = null;
+            numFilas = 0;
+            numCols = 0;
+            numeroPosiciones = 0;
+            teclasDe4Lados = false;        
+        
+        
+        }				     //constructor por defecto
 
 	public teclado(String fT, int nF, int nC, int nP, boolean t4) {    //construct
 		setForma(fT);
@@ -44,10 +52,6 @@ public class teclado {
 	 * @param tt    forma del teclado
 	 */
 	public void setForma(String tt) {
-		if (!(tt).equals("rectangular") && !(tt).equals("hexagonal") && !(tt).equals("dosHexagonos")) {
-			throw new IllegalArgumentException("Error en el nombre del teclado:" + 
-					" rectangular || hexagonal || dosHexagonos  -->" + tt + "<---");
-		}
 		formaTeclado = tt;
 	}
 
@@ -64,9 +68,9 @@ public class teclado {
 	 * @param nf    numero de filas del teclado
 	 */
 	public void setNumeroFilas(int nf) {
-		if (nf < 0) {
+		/*if (nf < 0) {
 			throw new IllegalArgumentException("Error en el numero de filas del teclado: numeroFilas < 0");
-		}
+		}*/
 		numFilas = nf;
 	}
 
@@ -83,9 +87,9 @@ public class teclado {
 	 * @param nc    numero de columnas del teclado
 	 */
 	public void setNumeroColumnas(int nc) {
-		if (nc < 0) {
+		/*if (nc < 0) {
 			throw new IllegalArgumentException("Error en el numero de columnas del teclado: numeroColumnas < 0");
-		}
+		}*/
 		numCols = nc;
 	}
 
@@ -118,9 +122,9 @@ public class teclado {
 	 * @param nP            numero de posiciones de la matriz
 	 */
 	public void setNumeroPosiciones(int nP) {
-		if (nP < 0 || nP > getNumeroFilas()*getNumeroColumnas()) {
+		/*if (nP < 0 || nP > getNumeroFilas()*getNumeroColumnas()) {
 			throw new IllegalArgumentException("Error al asignar las posiciones: numeroPosiciones < 0 || numeroPosiciones > numeroFilas*numeroColumnas");
-		}
+		}*/
 		numeroPosiciones = nP;
 	}
 

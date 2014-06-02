@@ -119,6 +119,7 @@ public class nuevoTexto extends javax.swing.JFrame {
         // TODO add your handling code here:
         nuevoTexto.this.setVisible(false);
         configCT.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_bAtrasActionPerformed
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
@@ -127,6 +128,7 @@ public class nuevoTexto extends javax.swing.JFrame {
         configCT.setNewTexto(tElegido);
         configCT.setVisible(true);
         nuevoTexto.this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_bAceptarActionPerformed
 
     /**

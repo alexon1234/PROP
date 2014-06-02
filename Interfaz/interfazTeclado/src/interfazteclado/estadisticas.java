@@ -1,7 +1,7 @@
 
 
 
-package interfazteclado;
+package enunciadoteclado;
 
 
 import java.io.IOException;
