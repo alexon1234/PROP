@@ -20,9 +20,16 @@ public class gilmore {
     private hungar hungaro;
     private int[][] estadisticas;
     private int[][] distancia;
-    private float [][] matriz2;
     
+    /**
+     * Constructora por defecto
+     */
     public gilmore(){};
+    /**
+     * Cosntructora completa
+     * @param estadistica Matriz de flujo
+     * @param distancia Matriz de distancias
+     */
     public gilmore(int [][] estadistica, int [][] distancia){
         this.estadisticas = estadistica;
         this.distancia = distancia;
@@ -30,6 +37,11 @@ public class gilmore {
 
     }
     
+    /**
+     * Metodo que calcula el coste de la asignacion realizadas
+     * @param asignado int[] con las asignaciones realizadas
+     * @return devuelve un coste de la asignacion hecha
+     */
     public float g(int[] asignado) {
         float cost = 0;
         for(int i=0; i < asignado.length; ++i) {
@@ -41,8 +53,16 @@ public class gilmore {
         return cost;
     }
     
+    /**
+     * Metodo que decuelve una matriz con el termino 2 
+     * @param pendiente Vector<Integer> de las asignaciones pendientes
+     * @param asignado int[] de las asignaciones realizadas
+     * @param pos int indica marca la posicion de la ultima asignacion hecha
+     * @param costeFijo coste de la asignacion hecha
+     * @return una matriz con el termino 2
+     */
     public float[][] termino2(Vector<Integer> pendiente, int[] asignado, int pos, float costeFijo) {
-        matriz2 = new float [pendiente.size()][pendiente.size()];
+        float [][] matriz2 = new float [pendiente.size()][pendiente.size()];
         int l = 0;
         for(int i =0; i < pendiente.size();++i) {
             for(int j = 0; j < asignado.length; ++j) {
@@ -68,6 +88,13 @@ public class gilmore {
         return matriz2;
     }
     
+    /**
+     * Devuelve un matriz del 3r termino
+     * @param pendiente Vector<Integer> de las asignaciones pendientes
+     * @param asignado int[] de las asignaciones realizadas
+     * @param pos int indica marca la posicion de la ultima asignacion hecha
+     * @return una matriz del 3r termino
+     */
     public float [][] termino3 (Vector<Integer> pendiente, int[] asignado, int pos) {
         int mida = asignado.length-pendiente.size();
         float [][] matriz3 = new float[pendiente.size()][pendiente.size()];
@@ -177,6 +204,14 @@ public class gilmore {
     
     
     
+    /**
+     * Coste aproximado de lan asignacion
+     * @param pendiente Vector<Integer> de las asignaciones pendientes
+     * @param asignado int[] de las asignaciones realizadas
+     * @param pos int indica marca la posicion de la ultima asignacion hecha
+     * @param costeFijo coste de la asignacion hecha
+     * @return devuelve el coste de la aproximacion de la asignacion
+     */
     public float h(Vector<Integer> pendiente, int[] asignado, int pos,float costeFijo) {
         float [][] matriz2 = termino2 (pendiente,asignado,pos,costeFijo);
         float [][] matriz3 = termino3 (pendiente,asignado,pos);
@@ -191,6 +226,13 @@ public class gilmore {
     }
     
     
+    /**
+     * Calculo del coste de una asignación
+     * @param pendiente Vector<Integer> de las asignaciones pendientes
+     * @param asignado int[] de las asignaciones realizadas
+     * @param pos int indica marca la posicion que 
+     * @return el coste de la asignacion
+     */
     public double calcularCoste(Vector<Integer> pendiente, int[] asignado, int pos) {;
         float costeReal = g(asignado); 
         float costeAprox=0;

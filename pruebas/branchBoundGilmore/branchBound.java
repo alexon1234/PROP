@@ -26,9 +26,9 @@ public class branchBound {
     private int mida;                 // mida de la solucio
     private int[][] estadistica;      // matriu de flux
     private int[][] distancia;        // matriu de distancia
-    public  Node mejorSolucion;       // Node amb la millor solucio 
-    double  mejorCost;                // Millor cost fins al moment
-    gilmore g;
+    Node mejorSolucion;      // Node amb la millor solucio 
+    double  mejorCost;        // Millor cost fins al moment
+    private gilmore g;                // Gilmore Lawler                   
     /**
      * Constructora per defecte
      * @param mida mida de la solucio
@@ -252,9 +252,9 @@ public class branchBound {
     }
     
     /**
-     *
-     * @param a
-     * @return
+     * Metodo que calcula la solucion
+     * @param a ArrayList<Integer> con los pendientes
+      * @return si es solucion o no
      */
     public boolean esSolucion(ArrayList<Integer> a) {
         System.out.println ("Sale");

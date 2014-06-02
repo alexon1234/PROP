@@ -17,12 +17,12 @@ import java.util.*;
 public class hungar {
     
    
-    private boolean[] filinicub;
-    private boolean[] colinicub;
-    private boolean[] filcub;
-    private boolean[] colcub;
-    private int[] filselec;
-    private int[] colselec;
+    private boolean[] filinicub;    // Fila inicialmente cubierta
+    private boolean[] colinicub;    // Columna inicialmente cubierta
+    private boolean[] filcub;       // Fila cubierta
+    private boolean[] colcub;       // columna cubierta
+    private int[] filselec;         // Fila con zeros
+    private int[] colselec;         // Columna con zeros
     private int a;
 
     public hungar() {
@@ -41,8 +41,8 @@ public class hungar {
                 matriz[i][j] = M[i][j];
             }
         }
-        filinicub = new boolean[M.length]; //Fila cubierta
-        if (M.length > 0) a = M[0].length;
+        filinicub = new boolean[M.length]; // Fila cubierta
+        if (M.length > 0) a = M[0].length; 
         else a = 0;
         colinicub = new boolean[a]; // Columna cubierta
         ini(M);
@@ -60,18 +60,19 @@ public class hungar {
         filcub = new boolean[filinicub.length];
         colcub = new boolean[colinicub.length];
         cubcolceros();                       // Marco las columnas con zeros
-        boolean aa = false;
-        while (!aa) {
-            int[] cerosel = selceros(M, filnosel); //
-            boolean entradainv = false;
+        boolean salir = false;
+        while (!salir) {
+            int[] cerosel = selceros(M, filnosel); // vector con la posicion de un zero
+            boolean acabar = false;
             while (cerosel == null) { 
-                if(!continua(M)) {
-                    entradainv = true;
+                if(!continua(M)) {                  // Si no quedan mas zeros salir
+                    acabar = true;
                     break;
                 }
-                cerosel = selceros(M, filnosel);
+                cerosel = selceros(M, filnosel);    
             }  
-            if(entradainv) break;       
+            if(acabar) break;                       // Si acabar = true, 
+                                                    // tenemos solucion 
                     
                 
                 
@@ -87,21 +88,21 @@ public class hungar {
                     }
                     System.out.println("");
                 }*/
-            int columnIndex = filselec[cerosel[0]];
-            if (-1 == columnIndex) {;
-                marceros(cerosel, filnosel);
-                Arrays.fill(filnosel, -1);
+            int columnIndex = filselec[cerosel[0]];    
+            if (-1 == columnIndex) {;               // Si -1, no es una posicion valida
+                marceros(cerosel, filnosel);        // Obtengo una posicion alternativa
+                Arrays.fill(filnosel, -1);          // reseteo todo
                 Arrays.fill(colcub, false);
                 Arrays.fill(filcub, false);
-                cubcolceros();
+                cubcolceros();                      // Marco las columnas con zeros
             } else {
-                filcub[cerosel[0]] = true;
+                filcub[cerosel[0]] = true;          // 
                 colcub[columnIndex] = false;
             }
-            aa = true;
-            for (int i = 0; i < colcub.length && aa; ++i) {
+            salir = true;
+            for (int i = 0; i < colcub.length && salir; ++i) {
                 if(!colcub[i]) {
-                    aa = false;
+                    salir = false;
                 }
             }
         }
@@ -196,7 +197,7 @@ public class hungar {
         }
         return null;
     }
-    
+    // Obtenemos solucion alternativa 
     private void marceros(int[] cerodesparej, int[] filnosel) {;
         int i;
         int j = cerodesparej[1];
