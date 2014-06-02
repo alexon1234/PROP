@@ -10,6 +10,7 @@ import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -37,7 +38,6 @@ public class controladorTexto {
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
         ruta = chooser.getCurrentDirectory().getAbsolutePath();
-        ruta += "\\Documentacion\\";
         System.out.println("Ruta " + ruta);
     }
     
@@ -167,6 +167,19 @@ public class controladorTexto {
         }
     }
     
+    
+    /**
+     * Metodo para abrir un archivo
+     * @param ruta String con la direccion del archivo que quiero abrir
+     */
+    public void abrirArchivo(String ruta) throws FileNotFoundException {
+        archivo = new File(ruta); 
+        if(!archivo.exists()) {
+            throw new FileNotFoundException("Error: El archivo no existe");
+        }
+    }
+    
+    
     /**
      * Devuelve la ruta del controlador
      * @return el valor de ruta del controlador
@@ -194,6 +207,21 @@ public class controladorTexto {
         BufferedReader Flee = new BufferedReader(new FileReader(archivo));
         Flee.readLine();
         return Flee.readLine();
+    }
+    
+    /**
+     * Metodo que devuelve el texto
+     * @return un string con el texto 
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public String getTexto() throws FileNotFoundException, IOException {
+        if(archivo == null) throw new FileNotFoundException("Error: El archivo no existe");
+        BufferedReader Flee = new BufferedReader(new FileReader(archivo));
+        String linia = null;
+        while((linia += Flee.readLine()) != null);
+        return linia;
+        
     }
  
     
